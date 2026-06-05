@@ -1,0 +1,33 @@
+{
+  "projects": [
+    {
+      "slug": "quicklink",
+      "title": "QuickLink",
+      "description": "A personal read-it-later tool that uses AI to auto-generate descriptions for saved links, so you can actually find them again.",
+      "tags": ["ASP.NET Core", "Angular 18", "MongoDB", "Docker", "AI APIs"],
+      "liveUrl": "",
+      "githubUrl": "https://github.com/shivam-ssingh/QuickLink",
+      "date": "2025-04",
+      "featured": true
+    },
+    {
+      "slug": "secure-chat",
+      "title": "Secure Chat",
+      "description": "Real-time full-stack chat platform with JWT auth, GitHub OAuth, and WebSocket messaging via SignalR. Containerised with Docker and deployed via NGINX.",
+      "tags": ["ASP.NET Core", "SignalR", "Angular 18", "MongoDB", "Docker"],
+      "githubUrl": "https://github.com/shivam-ssingh",
+      "date": "2024-11",
+      "featured": true,
+      "liveUrl": "https://chatappui-gs4s.onrender.com"
+    },
+    {
+      "slug": "excel-to-word-processor",
+      "title": "ExcelToWordProcessor",
+      "description": "A self-contained Windows CLI tool that reads an Excel file and populates Word document content controls using OpenXML SDK.",
+      "tags": ["C#", ".NET", "OpenXML", "CLI"],
+      "githubUrl": "https://github.com/shivam-ssingh/ExcelToWordProcessor",
+      "date": "2024-03",
+      "featured": false
+    }
+  ]
+}
