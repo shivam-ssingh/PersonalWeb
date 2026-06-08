@@ -1,0 +1,89 @@
+<header class="nav">
+  <div class="nav__inner">
+    <a routerLink="/" class="nav__logo" (click)="closeMenu()"> Shivam Singh </a>
+    <!-- <span class="nav__logo-dot">.</span> -->
+    <!-- Desktop links -->
+    <nav class="nav__links" aria-label="Primary navigation">
+      <a
+        routerLink="/projects"
+        routerLinkActive="nav__link--active"
+        class="nav__link"
+        (click)="closeMenu()"
+      >
+        Projects
+      </a>
+      <a
+        routerLink="/blog"
+        routerLinkActive="nav__link--active"
+        class="nav__link"
+        (click)="closeMenu()"
+      >
+        Blog
+      </a>
+      <a
+        routerLink="/"
+        fragment="about"
+        class="nav__link"
+        (click)="closeMenu()"
+      >
+        About
+      </a>
+    </nav>
+
+    <!-- CV download -->
+    <a href="assets/cv/Shivam-Singh.pdf" download class="nav__cta btn">
+      Download CV
+    </a>
+
+    <!-- Hamburger — mobile only -->
+    <button
+      class="nav__hamburger"
+      [class.nav__hamburger--open]="menuOpen()"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+      [attr.aria-expanded]="menuOpen()"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div
+    class="nav__drawer"
+    [class.nav__drawer--open]="menuOpen()"
+    [attr.aria-hidden]="!menuOpen()"
+  >
+    <nav class="nav__drawer-links" aria-label="Mobile navigation">
+      <a
+        routerLink="/projects"
+        routerLinkActive="nav__link--active"
+        class="nav__drawer-link"
+        (click)="closeMenu()"
+        >Projects</a
+      >
+      <a
+        routerLink="/blog"
+        routerLinkActive="nav__link--active"
+        class="nav__drawer-link"
+        (click)="closeMenu()"
+        >Blog</a
+      >
+      <a
+        routerLink="/"
+        fragment="about"
+        class="nav__drawer-link"
+        (click)="closeMenu()"
+        >About</a
+      >
+      <a
+        href="assets/cv/Shivam-Singh.pdf"
+        download
+        class="nav__drawer-link nav__drawer-link--cta"
+        (click)="closeMenu()"
+        >Download CV</a
+      >
+    </nav>
+  </div>
+</header>
