@@ -1,0 +1,54 @@
+@if (meta(); as post) {
+  <!-- Post header -->
+  <div class="post-header">
+    <div class="post-header__inner">
+      <a routerLink="/blog" class="post-header__back">← All Posts</a>
+
+      <div class="post-header__meta">
+        <span class="badge badge--{{ post.category }}">{{
+          post.category
+        }}</span>
+        <span class="post-header__date">{{ formatDate(post.date) }}</span>
+        <span class="post-header__read-time">{{ post.readTime }}</span>
+      </div>
+
+      <h1 class="post-header__title">{{ post.title }}</h1>
+      <p class="post-header__desc">{{ post.description }}</p>
+    </div>
+  </div>
+
+  <!-- Post body -->
+  <div class="post-content">
+    <div class="post-content__inner">
+      @if (loading()) {
+        <div class="loading">
+          <span class="loading__text">Loading…</span>
+        </div>
+      } @else {
+        <article class="md-body">
+          <markdown [data]="markdownContent()" />
+        </article>
+
+        <!-- Post footer -->
+        <footer class="post-footer">
+          <div class="post-footer__tags">
+            @if (post.tags && post.tags.length) {
+              <span class="post-footer__label">Tagged:</span>
+              @for (tag of post.tags; track tag) {
+                <span class="tag">{{ tag }}</span>
+              }
+            }
+          </div>
+          <a routerLink="/blog" class="btn btn--secondary post-footer__back">
+            ← Back to Blog
+          </a>
+        </footer>
+      }
+    </div>
+  </div>
+} @else if (!loading()) {
+  <div class="not-found">
+    <p class="not-found__text">Post not found.</p>
+    <a routerLink="/blog" class="btn btn--secondary">← Back to Blog</a>
+  </div>
+}

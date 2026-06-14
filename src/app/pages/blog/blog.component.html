@@ -1,0 +1,104 @@
+<!-- Page header -->
+<div class="page-header">
+  <div class="page-header__inner">
+    <p class="page-header__kicker">
+      <span class="page-header__kicker-rule"></span>
+      Writing
+    </p>
+    <h1 class="page-header__title">Blog</h1>
+    <p class="page-header__sub">
+      Tech, sport, books, and whatever else is on my mind. I write when
+      something is worth writing down.
+    </p>
+  </div>
+</div>
+
+<!-- Filter bar -->
+<div class="filter-bar">
+  <div class="filter-bar__inner">
+    <ul class="filter-bar__list">
+      @for (cat of categories; track cat.value) {
+        <li>
+          <button
+            class="filter-bar__btn"
+            [class.filter-bar__btn--active]="activeCategory() === cat.value"
+            (click)="setCategory(cat.value)"
+          >
+            {{ cat.label }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
+<!-- Posts -->
+<div class="blog-list">
+  <div class="blog-list__inner">
+    @if (loading()) {
+      <div class="loading">
+        <span class="loading__text">Loading posts…</span>
+      </div>
+    }
+
+    @if (!loading() && filteredPosts().length === 0) {
+      <div class="empty">
+        <p class="empty__text">No posts in this category yet.</p>
+      </div>
+    }
+
+    @for (post of filteredPosts(); track post.slug) {
+      <article class="post-row">
+        <div class="post-row__left">
+          <span class="badge badge--{{ post.category }}">{{
+            post.category
+          }}</span>
+          <p class="post-row__date">{{ formatDate(post.date) }}</p>
+          <p class="post-row__read-time">{{ post.readTime }}</p>
+        </div>
+
+        <div class="post-row__body">
+          <h2 class="post-row__title">
+            @if (post.externalUrl) {
+              <a
+                [href]="post.externalUrl"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {{ post.title }}
+                <span class="post-row__external-icon">↗</span>
+              </a>
+            } @else {
+              <a [routerLink]="['/blog', post.slug]">{{ post.title }}</a>
+            }
+          </h2>
+          <p class="post-row__desc">{{ post.description }}</p>
+
+          @if (post.tags && post.tags.length) {
+            <ul class="post-row__tags">
+              @for (tag of post.tags; track tag) {
+                <li class="tag">{{ tag }}</li>
+              }
+            </ul>
+          }
+        </div>
+
+        <div class="post-row__action">
+          @if (post.externalUrl) {
+            <a
+              [href]="post.externalUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--ghost"
+              >Read ↗</a
+            >
+          } @else {
+            <a [routerLink]="['/blog', post.slug]" class="btn btn--ghost"
+              >Read →</a
+            >
+          }
+        </div>
+      </article>
+    }
+  </div>
+</div>
